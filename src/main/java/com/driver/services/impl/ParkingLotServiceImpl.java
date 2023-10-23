@@ -31,13 +31,14 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public Spot addSpot(int parkingLotId, Integer numberOfWheels, Integer pricePerHour) {
+
         Optional<ParkingLot> optionalParkingLot = parkingLotRepository1.findById(parkingLotId);
-        
+
         if (optionalParkingLot.isPresent()){
 
             //Fetching parking lot
             ParkingLot parkingLot = optionalParkingLot.get();
-            
+
             Spot spot = new Spot();
             if (numberOfWheels <= 2){
                 spot.setSpotType(SpotType.TWO_WHEELER);
@@ -55,8 +56,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             parkingLot.getSpotList().add(spot);
             //Now save this to db
             parkingLotRepository1.save(parkingLot);
-            //check
-            spotRepository1.save(spot);
             return spot;
         }
         return null;

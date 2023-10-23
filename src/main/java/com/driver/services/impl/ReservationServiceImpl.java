@@ -49,16 +49,16 @@ public class ReservationServiceImpl implements ReservationService {
         ParkingLot parkingLot = optionalParkingLot.get();
 
         //Identify the spottype acc to wheel
-        SpotType curspottype = null;
+        String wheeler;
 
         if(numberOfWheels == 2){
-            curspottype = SpotType.TWO_WHEELER;
+            wheeler = "TWO_WHEELER";
         }
         else if (numberOfWheels == 4){
-            curspottype = SpotType.FOUR_WHEELER;
+            wheeler = "FOUR_WHEELER";
         }
         else {
-            curspottype = SpotType.OTHERS;
+            wheeler = "OTHERS";
         }
 
         int price = Integer.MAX_VALUE;
@@ -69,7 +69,7 @@ public class ReservationServiceImpl implements ReservationService {
                 int priceperhour = spot.getPricePerHour();
                 int wheels = getWheelerType(spot.getSpotType());
 
-                if (spot.getPricePerHour() < price && spot.getSpotType().equals(SpotType.valueOf(String.valueOf(curspottype)))){
+                if (spot.getPricePerHour() < price && spot.getSpotType().equals(SpotType.valueOf(wheeler))){
                     price = spot.getPricePerHour();
                     reservedSpot = spot;
                 }

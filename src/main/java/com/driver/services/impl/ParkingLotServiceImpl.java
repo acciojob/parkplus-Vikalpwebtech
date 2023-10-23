@@ -50,7 +50,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
             spot.setOccupied(false);
             spot.setPricePerHour(pricePerHour);
-            spot.setParkinglot(parkingLot);
+            spot.setParkingLot(parkingLot);
 
             parkingLot.getSpotList().add(spot);
             //Now save this to db
@@ -64,19 +64,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteSpot(int spotId) {
-        Optional<Spot> optionalSpot = spotRepository1.findById(spotId);
-
-        if (optionalSpot.isPresent()){
-            Spot spot = optionalSpot.get();
-
-            //Removing from spotlist
-            ParkingLot parkingLot = spot.getParkinglot();
-            parkingLot.getSpotList().remove(spot);
-
-            parkingLotRepository1.save(parkingLot);
-
-            spotRepository1.delete(spot);
-        }
+        spotRepository1.deleteById(spotId);
     }
 
     @Override
@@ -95,11 +83,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteParkingLot(int parkingLotId) {
-        Optional<ParkingLot> optionalParkingLot = parkingLotRepository1.findById(parkingLotId);
-
-        if (optionalParkingLot.isPresent()){
-            ParkingLot parkingLot = optionalParkingLot.get();
-            parkingLotRepository1.delete(parkingLot);
-        }
+        parkingLotRepository1.deleteById(parkingLotId);
     }
 }

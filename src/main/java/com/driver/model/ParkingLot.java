@@ -8,9 +8,9 @@ import java.util.List;
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String address;
+    private int id;
+    private String name;
+    private String address;
 
     @OneToMany(mappedBy = "parkinglot",cascade = CascadeType.ALL)
     List<Spot> spotList = new ArrayList<>();

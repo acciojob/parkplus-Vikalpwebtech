@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int numberOfHours;
+    private int id;
+    private int numberOfHours;
 
     @ManyToOne
     @JoinColumn

@@ -7,10 +7,11 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    Boolean paymentCompleted;
+    private int id;
+    private Boolean paymentCompleted;
 
-    PaymentMode paymentMode;
+    @Enumerated(EnumType.STRING)
+    private PaymentMode paymentMode;
 
     @OneToOne
     @JoinColumn
